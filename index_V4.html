@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>All-in-One | منصة الإعدادي</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial;background:#f5f7fb;color:#172033}
+button{font:inherit;cursor:pointer;border:0}a{text-decoration:none;color:inherit}
+.top{background:linear-gradient(135deg,#2636d9,#16a6a0);color:#fff;padding:18px 16px 26px;position:sticky;top:0;z-index:5}
+.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{font-weight:900;font-size:22px}.nav button{background:#ffffff22;color:#fff;border-radius:12px;padding:9px 12px}
+.wrap{max-width:1100px;margin:auto;padding:22px 16px 60px}.hero{background:#fff;border-radius:28px;padding:28px;box-shadow:0 10px 35px #17203312;margin-top:18px;overflow:hidden;position:relative}
+.hero h1{font-size:clamp(28px,5vw,48px);margin:8px 0}.hero p{color:#667085;line-height:1.9;max-width:720px}.rocket{font-size:46px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.card{background:#fff;border:1px solid #e8eaf0;border-radius:22px;padding:20px;box-shadow:0 7px 24px #1720330b;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 30px #17203316}
+.grade{min-height:155px;color:#fff;position:relative;overflow:hidden}.grade h3{font-size:24px;margin:8px 0}.g1{background:linear-gradient(135deg,#5b4bdb,#8d63e8)}.g2{background:linear-gradient(135deg,#008f9c,#18b6a5)}.g3{background:linear-gradient(135deg,#e16a2d,#f1a23a)}
+.icon{font-size:35px}.muted{color:#667085}.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef1ff;color:#2636d9;font-size:13px;font-weight:700}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:30px 0 12px}.section-title h2{margin:0}
+.subject{min-height:150px}.subject .icon{font-size:32px}.subject h3{margin:10px 0 5px}.subject small{color:#7a8496}
+.crumb{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.crumb button{background:#eef1f6;border-radius:10px;padding:8px 11px;color:#475467}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.primary{background:#2636d9;color:#fff;padding:12px 17px;border-radius:13px;font-weight:800}.secondary{background:#e9edf8;color:#2636d9;padding:12px 17px;border-radius:13px}
+.list{display:grid;gap:10px}.unit{background:#fff;border-radius:18px;border:1px solid #e7eaf0;overflow:hidden}.unit-head{padding:17px;display:flex;justify-content:space-between;align-items:center}.lessons{padding:0 12px 12px;display:grid;gap:8px}.lesson{background:#f7f8fc;border-radius:13px;padding:13px;display:flex;justify-content:space-between;align-items:center}
+.lesson button{background:#fff;border:1px solid #e1e4eb;border-radius:9px;padding:7px 10px;color:#2636d9}
+.lesson.done{border-right:5px solid #15a36f}
+.reader{background:#fff;border-radius:24px;padding:25px;line-height:2;box-shadow:0 8px 28px #1720330d}.reader h2{margin-top:0}.note{background:#fff8e6;border-right:5px solid #f0a400;padding:14px;border-radius:12px}.example{background:#eef8ff;border-right:5px solid #1784c7;padding:14px;border-radius:12px;margin:12px 0}
+.question{background:#fff;border:1px solid #e7eaf0;border-radius:17px;padding:17px;margin:12px 0}.options{display:grid;gap:8px;margin-top:12px}.options button{text-align:right;background:#f5f6fa;border:1px solid #e2e5eb;padding:12px;border-radius:11px}.options button.correct{background:#dff7eb;border-color:#17a673}.options button.wrong{background:#ffe4e4;border-color:#d33}
+.progress{height:10px;background:#e8ebf2;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,#2636d9,#17a48f)}
+.exam{background:linear-gradient(135deg,#171d3d,#2636d9);color:#fff;border-radius:24px;padding:25px}.exam .question{color:#172033}
+.trans{display:grid;grid-template-columns:1fr 1fr;gap:12px}.trans textarea{width:100%;min-height:160px;border:1px solid #ddd;border-radius:14px;padding:14px;font:inherit;resize:vertical}
+.pay{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff}.pay button{background:#fff;color:#087f76;border-radius:12px;padding:11px 15px;font-weight:800}
+footer{text-align:center;color:#7a8496;padding:30px}
+@media(max-width:650px){.hero{padding:20px}.trans{grid-template-columns:1fr}.nav{align-items:flex-start}.brand{font-size:18px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="nav"><div class="brand">🎓 All-in-One</div><div><button onclick="home()">الرئيسية</button> <button onclick="showExams()">📝 الاختبارات</button></div></div></header>
+<main class="wrap" id="app"></main>
+<footer>All-in-One • منصة تعليمية للمرحلة الإعدادية • نسخة تجريبية قابلة للتطوير</footer>
+<script>
+const subjects=[
+{id:'ar',name:'اللغة العربية',icon:'📚',desc:'قراءة ونصوص ونحو وتعبير وتطبيقات'},
+{id:'en',name:'English',icon:'🇬🇧',desc:'Vocabulary • Grammar • Reading • Writing'},
+{id:'math',name:'الرياضيات',icon:'📐',desc:'جبر وهندسة وتدريب متدرج'},
+{id:'science',name:'العلوم',icon:'🔬',desc:'مفاهيم وتجارب وأسئلة وتطبيقات'},
+{id:'social',name:'الدراسات الاجتماعية',icon:'🌍',desc:'تاريخ وجغرافيا وخرائط ومراجعات'}
+];
+const grades=[
+{id:'g1',name:'الأول الإعدادي',icon:'🚀',color:'g1'},
+{id:'g2',name:'الثاني الإعدادي',icon:'🧭',color:'g2'},
+{id:'g3',name:'الثالث الإعدادي',icon:'🏆',color:'g3'}
+];
+const baseLessons={
+ar:['القراءة والفهم','النصوص والأدب','النحو والتطبيق','التعبير والكتابة','مراجعة واختبار الوحدة'],
+en:['Unit vocabulary','Reading skills','Grammar in context','Writing practice','Unit review test'],
+math:['المفاهيم الأساسية','أمثلة محلولة','تدريبات متدرجة','مسائل تطبيقية','اختبار الوحدة'],
+science:['المفهوم الأساسي','المصطلحات والرسوم','تجربة أو تطبيق','أسئلة التفكير','اختبار الوحدة'],
+social:['المفاهيم الأساسية','الخريطة والبيانات','أحداث وشخصيات','أسئلة التفكير','اختبار الوحدة']
+};
+function makeUnits(grade,sub){
+let names={
+ar:['الوحدة الأولى','الوحدة الثانية','الوحدة الثالثة','الوحدة الرابعة'],
+en:['Unit 1','Unit 2','Unit 3','Unit 4'],
+math:['الوحدة الأولى: الأعداد والجبر','الوحدة الثانية: الهندسة','الوحدة الثالثة: العلاقات والتمثيل','الوحدة الرابعة: تطبيقات ومراجعة'],
+science:['الوحدة الأولى: المادة والطاقة','الوحدة الثانية: التفاعلات والروابط','الوحدة الثالثة: الأنظمة والتغيرات','الوحدة الرابعة: البيئة والتطبيق'],
+social:['الوحدة الأولى: الجغرافيا','الوحدة الثانية: التاريخ','الوحدة الثالثة: السكان والموارد','الوحدة الرابعة: مراجعة وتطبيق']
+};
+return names[sub].map((u,i)=>({name:u,lessons:baseLessons[sub].map((x,j)=>x+' '+(i+1)+'.'+(j+1))}));
+}
+let state={grade:null,subject:null,unit:null,lesson:null};
+function home(){
+state={grade:null,subject:null,unit:null,lesson:null};
+app.innerHTML=`<section class="hero"><div class="rocket">🎓🚀</div><span class="pill">منصة الإعدادي</span><h1>ذاكر بذكاء… واستعد للنجاح</h1><p>منصة واحدة للمحتوى، الدروس، التدريبات والاختبارات. اختر صفك وابدأ رحلة المذاكرة خطوة بخطوة.</p><div class="toolbar"><button class="primary" onclick="document.getElementById('grades').scrollIntoView({behavior:'smooth'})">ابدأ المذاكرة الآن</button><button class="secondary" onclick="showExams()">📝 مركز الاختبارات</button></div></section>
+<div class="section-title" id="grades"><h2>🎒 اختر الصف</h2><span class="muted">أولى • ثانية • ثالثة</span></div>
+<div class="grid">${grades.map(g=>`<button class="card grade ${g.color}" onclick="chooseGrade('${g.id}')"><div class="icon">${g.icon}</div><h3>${g.name}</h3><span>5 مواد أساسية • ترم أول وثانٍ</span></button>`).join('')}</div>
+<div class="section-title"><h2>✨ داخل كل مادة</h2></div><div class="grid">
+<div class="card"><div class="icon">🎥</div><h3>شرح الدرس</h3><p class="muted">شرح مبسط + أمثلة + نقاط مهمة.</p></div>
+<div class="card"><div class="icon">🧠</div><h3>تدريب ذكي</h3><p class="muted">أسئلة بعد كل درس ووحدة.</p></div>
+<div class="card"><div class="icon">📊</div><h3>تقدمك الحقيقي</h3><p class="muted">نسبة إنجاز ونتائج الاختبارات.</p></div>
+<div class="card pay"><div class="icon">⭐</div><h3>الخدمات الإضافية</h3><p>قسم مستقل للاشتراكات المدفوعة، الدفع والتفعيل سيتم ربطهما لاحقًا ببوابة دفع مصرية آمنة.</p><button onclick="alert('سيتم تفعيل الدفع في النسخة الإنتاجية بعد إعداد بوابة الدفع والتحقق الآمن.')">استكشف</button></div>
+</div>`}
+function chooseGrade(id){
+state.grade=id;state.subject=null;state.unit=null;state.lesson=null;
+let g=grades.find(x=>x.id===id);
+app.innerHTML=`<div class="crumb"><button onclick="home()">الرئيسية</button><button>${g.name}</button></div>
+<section class="hero"><span class="pill">${g.icon} ${g.name}</span><h1>موادك الدراسية</h1><p>اختار المادة، وبعدها هتدخل على الترم والوحدات والدروس بدل القوائم الفارغة.</p></section>
+<div class="grid">${subjects.map(s=>`<button class="card subject" onclick="chooseSubject('${s.id}')"><div class="icon">${s.icon}</div><h3>${s.name}</h3><small>${s.desc}</small><br><span class="pill" style="margin-top:12px">فتح المادة ←</span></button>`).join('')}</div>`;
+}
+function chooseSubject(id){
+state.subject=id;state.unit=null;state.lesson=null;
+let g=grades.find(x=>x.id===state.grade),s=subjects.find(x=>x.id===id);
+app.innerHTML=`<div class="crumb"><button onclick="home()">الرئيسية</button><button onclick="chooseGrade('${state.grade}')">${g.name}</button><button>${s.name}</button></div>
+<section class="hero"><span class="pill">${s.icon} ${s.name}</span><h1>${g.name} • ${s.name}</h1><p>اختر الترم ثم الوحدة ثم الدرس. كل درس يحتوي على شرح وتطبيق وأسئلة.</p></section>
+<div class="grid"><button class="card" onclick="showUnits(1)"><div class="icon">📘</div><h3>الترم الأول</h3><p class="muted">وحدات ودروس + اختبارات شهرية</p></button><button class="card" onclick="showUnits(2)"><div class="icon">📗</div><h3>الترم الثاني</h3><p class="muted">وحدات ودروس + مراجعات + امتحان</p></button></div>`;
+}
+function showUnits(term){
+let s=subjects.find(x=>x.id===state.subject),g=grades.find(x=>x.id===state.grade);
+let units=makeUnits(g.id,s.id);
+app.innerHTML=`<div class="crumb"><button onclick="chooseSubject('${s.id}')">← ${s.name}</button><button>الترم ${term===1?'الأول':'الثاني'}</button></div>
+<section class="hero"><span class="pill">📖 ${s.name}</span><h1>الترم ${term===1?'الأول':'الثاني'}</h1><p>من هنا يبدأ مسار المذاكرة الحقيقي: وحدة → درس → تدريب → اختبار.</p></section>
+<div class="list">${units.map((u,i)=>`<div class="unit"><div class="unit-head"><div><b>${u.name}</b><div class="muted">5 عناصر تعليمية</div></div><span class="pill">${i===0?'ابدأ':'التالي'}</span></div><div class="lessons">${u.lessons.map((l,j)=>`<div class="lesson ${localStorage.getItem(key(l))?'done':''}"><span>${j===4?'📝':'📌'} ${l}</span><button onclick="openLesson('${encodeURIComponent(u.name)}','${encodeURIComponent(l)}',${j===4})">ابدأ</button></div>`).join('')}</div></div>`).join('')}</div>`;
+}
+function key(l){return 'done_'+state.grade+'_'+state.subject+'_'+l}
+function openLesson(u,l,isTest){
+state.unit=decodeURIComponent(u);state.lesson=decodeURIComponent(l);
+let s=subjects.find(x=>x.id===state.subject),g=grades.find(x=>x.id===state.grade);
+app.innerHTML=`<div class="crumb"><button onclick="showUnits(1)">← رجوع للدروس</button></div>
+<div class="reader"><span class="pill">${s.icon} ${g.name} • ${s.name}</span><h2>${state.lesson}</h2>
+<p>🎯 <b>هدف الدرس:</b> أن يفهم الطالب الفكرة، يطبقها بنفسه، ثم يختبر فهمه قبل الانتقال للدرس التالي.</p>
+<div class="note"><b>💡 الفكرة ببساطة</b><br>اقرأ الشرح بهدوء، ثم حاول أن تشرح الفكرة لنفسك في جملة أو مثال من عندك. الهدف ليس الحفظ فقط، بل الفهم والتطبيق.</div>
+<h3>📚 شرح الدرس</h3><p>هذا هو مكان المحتوى التعليمي الكامل للدرس. سنملؤه بالمحتوى المطابق للمنهج المعتمد بعد مراجعة الكتاب الرسمي الحالي، مع صياغة شرح أصلية مناسبة للطلاب، وليس نسخًا حرفيًا من الكتب.</p>
+<div class="example"><b>✏️ مثال تطبيقي</b><br>اقرأ المثال، حاول الحل بنفسك، ثم قارن خطواتك بالحل النموذجي.</div>
+<h3>🧠 أهم ما تتذكره</h3><ul><li>افهم المصطلحات الأساسية.</li><li>اربط الفكرة بالمثال والتطبيق.</li><li>حل أكثر من سؤال قبل الانتقال.</li></ul>
+<h3>🎯 اختبار فهم سريع</h3><div id="quiz"></div>
+<div class="toolbar"><button class="primary" onclick="markDone()">✅ أنهيت الدرس</button><button class="secondary" onclick="showUnits(1)">➡️ العودة لقائمة الدروس</button></div></div>`;
+quiz();
+}
+function quiz(){
+let q=[['ما الخطوة الأفضل بعد قراءة الشرح؟','الحل والتطبيق','تخطي الدرس','حفظ العنوان فقط'],['متى تنتقل للدرس التالي؟','بعد فهم الفكرة وحل التدريب','قبل القراءة','عند فتح الصفحة فقط']];
+quizIndex=0;let box=document.getElementById('quiz');box.innerHTML=q.map((x,i)=>`<div class="question"><b>${i+1}. ${x[0]}</b><div class="options"><button onclick="answer(this,true)">${x[1]} ✓</button><button onclick="answer(this,false)">${x[2]}</button><button onclick="answer(this,false)">${x[3]}</button></div></div>`).join('');
+}
+function answer(btn,ok){btn.classList.add(ok?'correct':'wrong');if(!ok)alert('قربت 😄 ارجع للفكرة الأساسية وحاول تاني.');}
+function markDone(){localStorage.setItem(key(state.lesson),'1');alert('تم تسجيل الدرس كمكتمل ✅');showUnits(1)}
+function showExams(){
+app.innerHTML=`<div class="hero"><span class="pill">📝 مركز الاختبارات</span><h1>اختبر نفسك بجد</h1><p>اختبارات درس ووحدة وشهر ونصف العام ونهاية العام. النسخة النهائية ستحتوي بنك أسئلة كبيرًا موزعًا حسب الصف والمادة والوحدة.</p></div>
+<div class="grid">${grades.map(g=>`<div class="card"><h3>${g.icon} ${g.name}</h3><div class="list"><button class="secondary" onclick="exam('${g.id}','monthly')">📅 اختبار شهري</button><button class="secondary" onclick="exam('${g.id}','mid')">📝 منتصف العام</button><button class="secondary" onclick="exam('${g.id}','final')">🏆 نهاية العام</button></div></div>`).join('')}</div>`;
+}
+function exam(gid,type){
+let g=grades.find(x=>x.id===gid);
+app.innerHTML=`<div class="exam"><span class="pill">اختبار تجريبي</span><h1>${g.name} • ${type==='monthly'?'اختبار شهري':type==='mid'?'منتصف العام':'نهاية العام'}</h1><p>الاختبار التجريبي هنا يعمل كنواة لنظام الامتحانات: أسئلة، توقيت، تصحيح، نتيجة، وتحليل نقاط الضعف.</p></div>
+<div class="reader"><div class="question"><b>1) ماذا تفعل إذا أخطأت في سؤال؟</b><div class="options"><button onclick="examAns(this,true)">أراجع الفكرة وأعيد المحاولة</button><button onclick="examAns(this,false)">أتجاهل الخطأ</button></div></div>
+<div class="question"><b>2) ما أفضل طريقة للاستعداد للامتحان؟</b><div class="options"><button onclick="examAns(this,true)">فهم المنهج + تدريب + امتحانات</button><button onclick="examAns(this,false)">الحفظ دون تدريب</button></div></div>
+<button class="primary" onclick="alert('نتيجتك التجريبية محفوظة في هذه الجلسة. سنضيف بنك الأسئلة والتصحيح الكامل في مرحلة المحتوى.')">إنهاء الاختبار</button></div>`;
+}
+function examAns(b,ok){b.classList.add(ok?'correct':'wrong')}
+function translator(){
+app.innerHTML=`<div class="hero"><span class="pill">🌐 المترجم</span><h1>مترجم اللغات</h1><p>اختر لغة المصدر والهدف، اكتب النص، ثم استخدم خدمة الترجمة عند توفر الإنترنت.</p></div>
+<div class="trans"><div class="card"><label>من</label><select id="from">${langs()}</select><textarea id="src" placeholder="اكتب النص هنا..."></textarea></div><div class="card"><label>إلى</label><select id="to">${langs('en')}</select><textarea id="out" readonly placeholder="الترجمة ستظهر هنا..."></textarea></div></div>
+<div class="toolbar"><button class="primary" onclick="swapLang()">⇄ تبديل اللغات</button><button class="secondary" onclick="translateText()">ترجمة</button></div>`;
+}
+const langData=[['ar','العربية'],['en','English'],['fr','Français'],['de','Deutsch'],['es','Español'],['it','Italiano'],['ru','Русский']];
+function langs(sel='ar'){return langData.map(x=>`<option value="${x[0]}" ${x[0]===sel?'selected':''}>${x[1]}</option>`).join('')}
+function swapLang(){let a=from.value,b=to.value;from.value=b;to.value=a}
+async function translateText(){let text=src.value.trim();if(!text){out.value='اكتب النص أولًا.';return}out.value='جارٍ طلب الترجمة...';try{let u='https://api.mymemory.translated.net/get?q='+encodeURIComponent(text)+'&langpair='+from.value+'|'+to.value;let r=await fetch(u);let j=await r.json();out.value=j.responseData?.translatedText||'تعذر الحصول على ترجمة.'}catch(e){out.value='تعذر الاتصال بخدمة الترجمة. تأكد من الإنترنت.'}}
+home();
+</script>
+</body></html>
